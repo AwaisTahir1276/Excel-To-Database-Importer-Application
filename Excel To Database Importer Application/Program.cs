@@ -1,4 +1,16 @@
+using Excel_To_Database_Importer_Application.ApplicationDbContext;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+
+// Get the connection string from appsettings.json
+var connectionString = builder.Configuration.GetConnectionString("ReadExcelFileData");
+
+// Add the DbContext with the connection string
+builder.Services.AddDbContext<ReadExcelFileDataDbContext>(options =>
+    options.UseSqlServer(connectionString));
+
 
 // Add services to the container.
 
